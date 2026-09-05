@@ -13,16 +13,31 @@ movies['genres_clean'] = movies['genres'].str.replace('|', ' ', regex=False)
 movies['year'] = movies['title'].str.extract(r'\((\d{4})\)')
 movies['year'] = pd.to_numeric(movies['year'], errors='coerce')
 
-# Convert genres into TF-IDF vectors (kept as a sparse matrix — memory-light)
+# Tag language based on movieId range (Tamil additions used IDs 300000+)
+movies['language'] = movies['movieId'].apply(lambda x: 'tamil' if x >= 300000 else 'english')
+
+# Convert genres into TF-IDF vectors (sparse matrix, memory-light)
 tfidf = TfidfVectorizer()
 genre_matrix = tfidf.fit_transform(movies['genres_clean'])
 
 # Build a lookup: movie title -> row index
 indices = pd.Series(movies.index, index=movies['title']).drop_duplicates()
 
-# Titles sorted two different ways, for the dropdown
-titles_alphabetical = movies.sort_values('title')['title'].tolist()
-titles_by_year = movies.sort_values(['year', 'title'], ascending=[False, True])['title'].tolist()
+def get_titles(category='all', sort_by='alphabetical'):
+    """Return a list of titles filtered by category and sorted as requested."""
+    subset = movies
+
+    if category == 'english':
+        subset = subset[subset['language'] == 'english']
+    elif category == 'tamil':
+        subset = subset[subset['language'] == 'tamil']
+
+    if sort_by == 'year':
+        subset = subset.sort_values(['year', 'title'], ascending=[False, True])
+    else:
+        subset = subset.sort_values('title')
+
+    return subset['title'].tolist()
 
 def recommend(title, n=5):
     if title not in indices:
