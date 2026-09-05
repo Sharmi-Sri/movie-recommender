@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="/" class="back-link">&larr; Home</a>
+<div class="results-header">
+  <p>SEARCH RESULTS FOR</p>
+  <h2>&ldquo;<span>{{ query }}</span>&rdquo;</h2>
+</div>
+<div class="grid">
+  {% for m in cards %}
+    <a href="/movie/{{ m.id }}" class="card">
+      {% if 'placeholder' not in m.poster %}<img src="{{ m.poster }}" alt="{{ m.title }}" loading="lazy">
+      {% else %}<div class="no-poster"><p>{{ m.title }}</p></div>{% endif %}
+      <div class="overlay">
+        <p>{{ m.title }}</p>
+        <p class="meta">{{ m.year or '' }}{% if m.rating %} &middot; ★ {{ m.rating }}{% endif %}</p>
+      </div>
+    </a>
+  {% else %}
+    <p class="empty-msg">No movies found. Try searching with a different title or keyword.</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="javascript:history.back()" class="back-link">&larr; Back</a>
+<div class="detail-panel">
+  <img class="detail-poster" src="{{ movie.poster }}" alt="{{ movie.title }}">
+  <div class="detail-info">
+    <h1>{{ movie.title }}</h1>
+    <p class="meta">{{ movie.year or '' }} &middot; {{ movie.genres }}{% if movie.rating %} &middot; ★ {{ movie.rating }}{% endif %}</p>
+    <p class="overview">{{ movie.overview }}</p>
+  </div>
+</div>
+
+{% if similar %}
+<div class="results-header">
+  <p>BECAUSE YOU LIKED</p>
+  <h2>&ldquo;<span>{{ movie.title }}</span>&rdquo;</h2>
+</div>
+<div class="grid">
+  {% for m in similar %}
+    <a href="/movie/{{ m.id }}" class="card">
+      {% if 'placeholder' not in m.poster %}<img src="{{ m.poster }}" alt="{{ m.title }}" loading="lazy">
+      {% else %}<div class="no-poster"><p>{{ m.title }}</p></div>{% endif %}
+      <div class="overlay">
+        <p>{{ m.title }}</p>
+        <p class="meta">{{ m.year or '' }}{% if m.rating %} &middot; ★ {{ m.rating }}{% endif %}</p>
+      </div>
+    </a>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

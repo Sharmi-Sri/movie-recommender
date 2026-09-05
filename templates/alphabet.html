@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="/" class="back-link">&larr; Home</a>
+<header><h1>Browse by Alphabet</h1></header>
+<div class="letter-row">
+  {% for l in letters %}
+    <a href="/alphabet?letter={{ l }}" class="letter-pill {{ 'active' if l == letter else '' }}">{{ l }}</a>
+  {% endfor %}
+</div>
+{% if letter %}
+<div class="grid">
+  {% for m in cards %}
+    <a href="/movie/{{ m.id }}" class="card">
+      {% if 'placeholder' not in m.poster %}<img src="{{ m.poster }}" alt="{{ m.title }}" loading="lazy">
+      {% else %}<div class="no-poster"><p>{{ m.title }}</p></div>{% endif %}
+      <div class="overlay">
+        <p>{{ m.title }}</p>
+        <p class="meta">{{ m.year or '' }}{% if m.rating %} &middot; ★ {{ m.rating }}{% endif %}</p>
+      </div>
+    </a>
+  {% else %}
+    <p class="empty-msg">No movies found starting with "{{ letter }}".</p>
+  {% endfor %}
+</div>
+{% if total_pages > 1 %}
+<div class="pagination">
+  {% if page > 1 %}<a href="/alphabet?letter={{ letter }}&page={{ page-1 }}">&laquo; Prev</a>{% endif %}
+  <span>Page {{ page }} of {{ total_pages }}</span>
+  {% if page < total_pages %}<a href="/alphabet?letter={{ letter }}&page={{ page+1 }}">Next &raquo;</a>{% endif %}
+</div>
+{% endif %}
+{% endif %}
+{% endblock %}
