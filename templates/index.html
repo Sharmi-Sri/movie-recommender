@@ -35,7 +35,7 @@
   .bg-glow {
     position: fixed;
     inset: 0;
-    z-index: -3;
+    z-index: 0;
     background:
       radial-gradient(ellipse 900px 500px at 50% -10%, rgba(76,141,255,0.18), transparent 60%),
       radial-gradient(ellipse 700px 500px at 90% 20%, rgba(76,141,255,0.08), transparent 60%),
@@ -54,7 +54,7 @@
   .snow {
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: 1;
     pointer-events: none;
     overflow: hidden;
   }
@@ -63,8 +63,9 @@
     position: absolute;
     top: -10px;
     border-radius: 50%;
-    background: #EAF0FF;
-    opacity: 0.7;
+    background: #FFFFFF;
+    box-shadow: 0 0 6px rgba(255,255,255,0.8);
+    opacity: 0.95;
     animation-name: fall, sway;
     animation-timing-function: linear, ease-in-out;
     animation-iteration-count: infinite, infinite;
@@ -77,15 +78,15 @@
   }
 
   @keyframes sway {
-    from { margin-left: -12px; }
-    to   { margin-left: 12px; }
+    from { margin-left: -14px; }
+    to   { margin-left: 14px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .bg-glow, .flake { animation: none; }
   }
 
-  .wrap { max-width: 880px; margin: 0 auto; position: relative; z-index: 1; }
+  .wrap { max-width: 880px; margin: 0 auto; position: relative; z-index: 2; }
 
   header { text-align: center; margin-bottom: 40px; }
 
@@ -317,26 +318,26 @@
   <div class="bg-glow"></div>
 
   <div class="snow">
-    <div class="flake" style="left:3%;  width:3px; height:3px; animation-duration:12s, 4s; animation-delay:0s, 0s;"></div>
-    <div class="flake" style="left:9%;  width:5px; height:5px; animation-duration:16s, 5s; animation-delay:1s, 0.3s;"></div>
-    <div class="flake" style="left:15%; width:2px; height:2px; animation-duration:10s, 3s; animation-delay:2s, 0.6s;"></div>
-    <div class="flake" style="left:22%; width:4px; height:4px; animation-duration:14s, 6s; animation-delay:0.5s, 1s;"></div>
-    <div class="flake" style="left:29%; width:3px; height:3px; animation-duration:11s, 4.5s; animation-delay:3s, 0.2s;"></div>
-    <div class="flake" style="left:36%; width:6px; height:6px; animation-duration:18s, 5.5s; animation-delay:1.5s, 0.8s;"></div>
-    <div class="flake" style="left:43%; width:2px; height:2px; animation-duration:9s,  3.5s; animation-delay:2.5s, 0.4s;"></div>
-    <div class="flake" style="left:50%; width:4px; height:4px; animation-duration:15s, 5s; animation-delay:0s, 1.2s;"></div>
-    <div class="flake" style="left:57%; width:3px; height:3px; animation-duration:12s, 4s; animation-delay:4s, 0.6s;"></div>
-    <div class="flake" style="left:64%; width:5px; height:5px; animation-duration:17s, 6s; animation-delay:1s, 0.1s;"></div>
-    <div class="flake" style="left:71%; width:2px; height:2px; animation-duration:10s, 3s; animation-delay:2s, 0.9s;"></div>
-    <div class="flake" style="left:78%; width:4px; height:4px; animation-duration:13s, 4.5s; animation-delay:3.5s, 0.3s;"></div>
-    <div class="flake" style="left:85%; width:3px; height:3px; animation-duration:11s, 5s; animation-delay:0.8s, 0.7s;"></div>
-    <div class="flake" style="left:91%; width:6px; height:6px; animation-duration:19s, 6.5s; animation-delay:2.2s, 0.2s;"></div>
-    <div class="flake" style="left:97%; width:2px; height:2px; animation-duration:9s,  3.5s; animation-delay:1.8s, 0.5s;"></div>
-    <div class="flake" style="left:12%; width:3px; height:3px; animation-duration:14s, 5s; animation-delay:5s, 0.4s;"></div>
-    <div class="flake" style="left:33%; width:4px; height:4px; animation-duration:16s, 4.5s; animation-delay:4.5s, 0.9s;"></div>
-    <div class="flake" style="left:60%; width:2px; height:2px; animation-duration:10s, 3s; animation-delay:3.2s, 0.1s;"></div>
-    <div class="flake" style="left:80%; width:5px; height:5px; animation-duration:15s, 5.5s; animation-delay:2.8s, 0.6s;"></div>
-    <div class="flake" style="left:95%; width:3px; height:3px; animation-duration:12s, 4s; animation-delay:1.3s, 0.3s;"></div>
+    <div class="flake" style="left:3%;  width:5px; height:5px; animation-duration:12s, 4s; animation-delay:0s, 0s;"></div>
+    <div class="flake" style="left:9%;  width:7px; height:7px; animation-duration:16s, 5s; animation-delay:1s, 0.3s;"></div>
+    <div class="flake" style="left:15%; width:4px; height:4px; animation-duration:10s, 3s; animation-delay:2s, 0.6s;"></div>
+    <div class="flake" style="left:22%; width:6px; height:6px; animation-duration:14s, 6s; animation-delay:0.5s, 1s;"></div>
+    <div class="flake" style="left:29%; width:5px; height:5px; animation-duration:11s, 4.5s; animation-delay:3s, 0.2s;"></div>
+    <div class="flake" style="left:36%; width:8px; height:8px; animation-duration:18s, 5.5s; animation-delay:1.5s, 0.8s;"></div>
+    <div class="flake" style="left:43%; width:4px; height:4px; animation-duration:9s,  3.5s; animation-delay:2.5s, 0.4s;"></div>
+    <div class="flake" style="left:50%; width:6px; height:6px; animation-duration:15s, 5s; animation-delay:0s, 1.2s;"></div>
+    <div class="flake" style="left:57%; width:5px; height:5px; animation-duration:12s, 4s; animation-delay:4s, 0.6s;"></div>
+    <div class="flake" style="left:64%; width:7px; height:7px; animation-duration:17s, 6s; animation-delay:1s, 0.1s;"></div>
+    <div class="flake" style="left:71%; width:4px; height:4px; animation-duration:10s, 3s; animation-delay:2s, 0.9s;"></div>
+    <div class="flake" style="left:78%; width:6px; height:6px; animation-duration:13s, 4.5s; animation-delay:3.5s, 0.3s;"></div>
+    <div class="flake" style="left:85%; width:5px; height:5px; animation-duration:11s, 5s; animation-delay:0.8s, 0.7s;"></div>
+    <div class="flake" style="left:91%; width:8px; height:8px; animation-duration:19s, 6.5s; animation-delay:2.2s, 0.2s;"></div>
+    <div class="flake" style="left:97%; width:4px; height:4px; animation-duration:9s,  3.5s; animation-delay:1.8s, 0.5s;"></div>
+    <div class="flake" style="left:12%; width:5px; height:5px; animation-duration:14s, 5s; animation-delay:5s, 0.4s;"></div>
+    <div class="flake" style="left:33%; width:6px; height:6px; animation-duration:16s, 4.5s; animation-delay:4.5s, 0.9s;"></div>
+    <div class="flake" style="left:60%; width:4px; height:4px; animation-duration:10s, 3s; animation-delay:3.2s, 0.1s;"></div>
+    <div class="flake" style="left:80%; width:7px; height:7px; animation-duration:15s, 5.5s; animation-delay:2.8s, 0.6s;"></div>
+    <div class="flake" style="left:95%; width:5px; height:5px; animation-duration:12s, 4s; animation-delay:1.3s, 0.3s;"></div>
   </div>
 
   <div class="wrap">
